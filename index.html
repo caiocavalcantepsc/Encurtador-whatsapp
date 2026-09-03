@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input placeholder="99999999999" type="text" id="in">
+
+    <button onclick="put()">
+        Clique para gerar o link para o WhatsApp
+    </button>
+
+    <div id="resultado"></div>
+
+    <script>
+        var tel = document.getElementById("in");
+
+        function put() {
+            document.getElementById("resultado").innerHTML =
+                `<a href="https://wa.me/${tel.value}">Abrir WhatsApp</a>`;
+        }
+    </script>
+
+</body>
+</html>
