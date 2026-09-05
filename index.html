@@ -1,27 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Gerador de Link WhatsApp</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #071c16, #0b2b22);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(15px);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .descricao {
+            color: #b9c9c3;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 18px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+
+            background: rgba(0,0,0,0.25);
+            color: white;
+
+            font-size: 16px;
+            outline: none;
+            transition: .3s;
+        }
+
+        input::placeholder {
+            color: #81938d;
+        }
+
+        input:focus {
+            border-color: #25d366;
+            box-shadow: 0 0 0 3px rgba(37,211,102,.12);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 14px;
+            padding: 16px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #25d366;
+            color: #062b19;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        button:hover {
+            background: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37,211,102,.25);
+        }
+
+        #resultado {
+            margin-top: 22px;
+        }
+
+        #resultado a {
+            display: block;
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: rgba(37,211,102,.1);
+            border: 1px solid rgba(37,211,102,.25);
+
+            color: #25d366;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: .25s;
+        }
+
+        #resultado a:hover {
+            background: #25d366;
+            color: #062b19;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <input placeholder="99999999999" type="text" id="in">
+    <div class="container">
 
-    <button onclick="put()">
-        Clique para gerar o link para o WhatsApp
-    </button>
 
-    <div id="resultado"></div>
+        <h1>Encurtador para Whatsapp</h1>
+
+        <p class="descricao">
+            Digite o número do WhatsApp para gerar um link de conversa.
+        </p>
+
+        <input
+            placeholder="Ex: 5575999999999"
+            type="text"
+            id="in"
+        >
+
+        <button onclick="put()">
+            Gerar link para WhatsApp
+        </button>
+
+        <div id="resultado"></div>
+
+    </div>
 
     <script>
         var tel = document.getElementById("in");
 
         function put() {
+
+            var numero = tel.value.replace(/\D/g, "");
+
+            if (!numero.startsWith("55")) {
+                numero = "55" + numero;
+            }
+
             document.getElementById("resultado").innerHTML =
-                `<a href="https://wa.me/${tel.value}">Abrir WhatsApp</a>`;
+                `<a href="https://wa.me/${numero}" target="_blank">
+                    Abrir conversa no WhatsApp →
+                </a>`;
         }
     </script>
 
